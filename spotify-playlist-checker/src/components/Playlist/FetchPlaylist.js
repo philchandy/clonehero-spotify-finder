@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AppBarComponent from "./AppBar.js"
-import { Box } from '@mui/material';
+import { Box, LinearProgress, Typography } from '@mui/material';
 import './FetchPlaylist.css'; // Import the CSS file
+import SelectPlaylistComponent from './PlaylistComponent.js';
+import CheckComponent from './CheckComponent.js';
 
 const Playlist = () => {
     const [playlists, setPlaylists] = useState([]);
-    const [selectedPlaylistId, setSelectedPlaylistId] = useState('');
-    const [tracks, setTracks] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [checkedSongs, setCheckedSongs] = useState([]);
+    const [isTracksFetched, setIsTracksFetched] = useState(false);
+    const [selectedPlaylist, setSelectedPlaylist] = useState(null);
 
     useEffect(() => {
         const fetchPlaylists = async () => {
             const accessToken = localStorage.getItem('spotify_token');
-
             if (!accessToken) {
                 setError('Access token is missing. Please log in again.');
                 return;
             }
-
             try {
                 const response = await axios.get('https://api.spotify.com/v1/me/playlists', {
                     headers: {
@@ -33,37 +33,30 @@ const Playlist = () => {
                 setError('Failed to fetch playlists. Please try again.');
             }
         };
-        
         fetchPlaylists();
-        
     }, []);
 
-    
-
-     // Function to fetch tracks when the button is clicked
-    const fetchTracks = async () => {
+    const fetchTracks = async (playlistId) => {
         const accessToken = localStorage.getItem('spotify_token');
-        if (selectedPlaylistId) {
+        if (playlistId) {
             setLoading(true);
             try {
-                const response = await axios.get( `https://api.spotify.com/v1/playlists/${selectedPlaylistId}/tracks?limit=25`, {
+                const response = await axios.get( `https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },
                 });
-                const fetchedTracks = response.data.items; // Store fetched tracks in a local variable
-                setTracks(fetchedTracks);
-                await checkPlaylistAvailability(fetchedTracks); // Pass the fetched tracks directly to the check function
-                console.log('CHECKED SONGS:', checkedSongs)
+                const fetchedTracks = response.data.items; 
+                await checkPlaylistAvailability(fetchedTracks); 
             } catch (error) {
                 console.error('Error fetching tracks:', error);
             } finally {
+                setIsTracksFetched(true);
                 setLoading(false);
             }
         }
     };
 
-    // Function to check song availability
     const checkPlaylistAvailability = async (fetchedTracks) => {
         if (fetchedTracks && fetchedTracks.length > 0) {
             try {
@@ -83,59 +76,47 @@ const Playlist = () => {
             }
         }
     };
-
-    const handlePlaylistSelect = (e) => {
-        setSelectedPlaylistId(e.target.value);
-        // Reset tracks and checkedSongs when a new playlist is selected
-        setTracks([]);
-        setCheckedSongs([]);
+    const handleGoBack = () => {
+        setIsTracksFetched(false); // Switch to playlist selector view
+    };
+    const handlePlaylistSelect = (playlist) => {
+        setSelectedPlaylist(playlist);
+        console.log('Selected Playlist:', playlist);
     };
 
     return (
         <div>
             <AppBarComponent />
             <Box sx={{ p:2 }}>
-                <Box >
-                    <h1>Select a Playlist</h1>
-                    {loading && <p>Loading...</p>}
-                    <select onChange={handlePlaylistSelect} value={selectedPlaylistId || ''}>
-                        <option value="">Select a playlist</option>
-                        {playlists.map(playlist => (
-                            <option key={playlist.id} value={playlist.id}>
-                                {playlist.name}
-                            </option>
-                        ))}
-                    </select>
-                </Box>
-                <Box>
-                    <button onClick={fetchTracks} disabled={!selectedPlaylistId || loading}>
-                        Fetch Tracks and Check Availability
-                    </button>
-                </Box>
-                {tracks.length > 0 && (
+                {!isTracksFetched? (
                     <>
-                        <h2>Tracks in Playlist:</h2>
-                        <ul>
-                            {tracks.map((track, index) => (
-                                <li key={index}>
-                                    {track.track.name} - {track.track.artists.map(artist => artist.name).join(', ')}
-                                </li>
-                            ))}
-                        </ul>
+                    {!loading ? (
+                        <>
+                            <SelectPlaylistComponent onPlaylistSelect={handlePlaylistSelect} playlists={playlists} fetchTracks={fetchTracks} />
+                        </>
+                    ): (
+                        <Box>
+                            <LinearProgress />
+                            <Box sx={{ 
+                                    display: "flex",
+                                    width:'100%' ,
+                                    justifyContent:'center',
+                                    alignItems:'center',
+                                    height: '100%',
+                                    marginTop:'25%'
+                                }}> 
+                                <Typography variant='h4' component='h1' color='textPrimary' sx = {{ textAlign:'center', fontWeight:'bold' }}>
+                                    Loading...
+                                </Typography>
+                            </Box>
+                        </Box>
+                    )}
                     </>
-                )}
-
-                {checkedSongs.length > 0 && (
-                    <>
-                        <h2>Song Availability:</h2>
-                        <ul>
-                            {checkedSongs.map((song, index) => (
-                                <li key={index}>
-                                    {song.name} by {song.artist} is {song.available ? 'available' : 'not available'}.
-                                </li>
-                            ))}
-                        </ul>
-                    </>
+                ) : (
+                    <CheckComponent 
+                        tracks={checkedSongs} 
+                        goBack={handleGoBack}
+                    />
                 )}
             </Box>
         </div>
