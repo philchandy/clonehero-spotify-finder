@@ -1,0 +1,9 @@
+.box-login {
+    display:'flex'; 
+    min-height:'100vh';
+    padding-left:'3%';
+    align-items:'flex-start';
+    justify-content:'center';  
+    flex-direction:'column';
+    background-color:"#67c789";
+}

@@ -23,36 +23,6 @@ li:hover {
 h3 {
     margin-top: 20px;
 }
-.app-bar {
-    background-color: #1DB954 /* Custom background color */
-  }
-  
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.app-title {
-  font-size: 1.5rem;
-  color: white;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-}
-
-.username {
-  color: white;
-}
-
-.user-info img {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-}
-
 .mainbox {
   padding: 2;
   display: flex;
@@ -65,4 +35,9 @@ h3 {
 
 .MuiPaginationItem-root:focus {
   outline: none; 
+}
+.box-centered{
+  display:'flex';
+  align-items: center;
+  justify-content: center;
 }

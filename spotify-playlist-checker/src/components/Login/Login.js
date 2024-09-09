@@ -1,7 +1,9 @@
 import React from 'react';
-import { Grid } from '@mui/material/';
 import { Button, Typography, Paper, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Footer from '../../sections/Footer';
+import {ReactComponent as SpotifyIcon} from '../../assets/spotify.svg'
+import InfoSection from '../../sections/InfoSection';
 
 const Login = () => {
     const handleLogin = () => {
@@ -24,32 +26,55 @@ const Login = () => {
         <ThemeProvider theme={theme}>
             <Box sx={{ 
                 display:'flex', 
-                height:'100vh', 
+                minHeight:'100vh', 
                 paddingLeft:'3%',
                 alignItems:'flex-start', 
                 justifyContent:'center',  
                 flexDirection:'column',
+                backgroundColor:"#67c789",
+                
             }}>
-                <Paper square={false} elevation={3} sx={{
-                    padding:'2%',
-                    
+                <Paper  elevation={3} sx={{
+                    padding:'5%',
                     flexDirection:'column',  
+                    width:'800px',
+                    borderRadius:'40px'
                 }}>
                     <Typography variant="h3" sx={{
-                        marginBottom:'3%',
-                        padding:'5%',
-                        textAlign:'flex-start'
+                        
+                        textAlign:'flex-start',
+                        textWrap:'wrap',
                     }}>
-                        Welcome to the Spotify Playlist Checker for Clone Hero
+                        Check for the availability of you favorite playlists on Clone Hero.
                     </Typography>
-                    <Button onClick={handleLogin} sx={{
-                        marginBottom:'3%',
-                        marginLeft:'5%',
+                    <Typography variant="h5" sx={{
+                        marginTop:'5%',
+                        marginBottom:'5%',
+                        
                     }}>
-                        Login with Spotify
+                        Search. Pick. Play.
+                    </Typography>
+                    <Button variant='soft' onClick={handleLogin} sx={{
+                        border:2,
+                        borderRadius:'10px',
+                        backgroundColor:'#67c789',
+                        
+                    }}>
+                        <Box sx={{
+                            display:'flex',
+                            alignItems:'center'
+                        }}>
+                            <SpotifyIcon />
+                            <Typography sx={{m:'10px'}}>
+                                Login with Spotify
+                            </Typography>
+                        </Box>
                     </Button>
                 </Paper>
+                
             </Box>
+            <InfoSection />
+            <Footer />
         </ThemeProvider>
     );
 };

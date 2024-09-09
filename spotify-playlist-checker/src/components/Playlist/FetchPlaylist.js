@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AppBarComponent from "./AppBar.js"
+import AppBarComponent from "../../sections/AppBar.js"
 import { Box, LinearProgress, Typography } from '@mui/material';
 import './FetchPlaylist.css'; // Import the CSS file
 import SelectPlaylistComponent from './PlaylistComponent.js';

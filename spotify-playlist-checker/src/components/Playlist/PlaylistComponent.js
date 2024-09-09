@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Box, FormControl, InputLabel, ListItemButton, List, ListItem, Typography } from '@mui/material';
+import './FetchPlaylist.css'
 
 const SelectPlaylistComponent = ({ onPlaylistSelect, playlists, fetchTracks }) => {
   const [selectedPlaylist, setSelectedPlaylist] = useState("");
@@ -19,12 +20,13 @@ const SelectPlaylistComponent = ({ onPlaylistSelect, playlists, fetchTracks }) =
   };
 
   return (
-    <div>
-      <FormControl fullWidth>
+    <Box  className='box-centered'>
         <Box sx={{ marginBottom:"2%", display:'flex' }}>
             <Typography>Select a Playlist</Typography>
         </Box>
-        <Box>
+        <Box  className='box-centered' sx={{
+          width:'40%'
+        }}>
             <List>
                 {playlists.map((playlist) => (
                     <ListItem key={playlist.id} disablePadding>
@@ -50,11 +52,10 @@ const SelectPlaylistComponent = ({ onPlaylistSelect, playlists, fetchTracks }) =
                 ))}
             </List>
         </Box>
-      </FormControl>
       <Button variant="contained" onClick={handleFetchTracks} style={{ marginTop: '20px' }}>
         Fetch Tracks
       </Button>
-    </div>
+    </Box>
   );
 };
 

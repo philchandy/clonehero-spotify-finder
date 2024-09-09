@@ -6,7 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 
-import './FetchPlaylist.css'; // Import the CSS file
+import './sections.css'; // Import the CSS file
 
 const AppBarComponent = () => {
     const [ user, setUser ] = useState(null);
@@ -38,9 +38,8 @@ const AppBarComponent = () => {
     return (
         <AppBar position="static" className="app-bar" sx={{ backgroundColor:'#1DB954' }}>
             <Toolbar className="toolbar">
-                {/* App name on the left side */}
                 <Typography variant="h6" className="app-title">
-                    My Spotify App
+                    Clone Hero - Spotify Checker
                 </Typography>
 
                 {/* User info on the right side, only visible when isMobile is false */}
