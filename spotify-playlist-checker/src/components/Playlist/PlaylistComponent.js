@@ -21,8 +21,8 @@ const SelectPlaylistComponent = ({ onPlaylistSelect, playlists, fetchTracks }) =
   return (
     <div>
       <FormControl fullWidth>
-        <Box sx={{ marginBottom:"5%" }}>
-            <InputLabel id="playlist-select-label">Select a Playlist</InputLabel>
+        <Box sx={{ marginBottom:"2%", display:'flex' }}>
+            <Typography>Select a Playlist</Typography>
         </Box>
         <Box>
             <List>

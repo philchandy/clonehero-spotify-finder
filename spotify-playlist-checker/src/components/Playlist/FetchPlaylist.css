@@ -27,42 +27,42 @@ h3 {
     background-color: #1DB954 /* Custom background color */
   }
   
-  .toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .app-title {
-    font-size: 1.5rem;
-    color: white;
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .username {
-    color: white;
-  }
-  
-  .user-info img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-  }
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .mainbox {
-    padding: 2;
-    display: flex;
-    height: 100vh;
-    width: 100%;
-  }
-  .MuiPaginationItem-root {
-    outline: none; 
-  }
-  
-  .MuiPaginationItem-root:focus {
-    outline: none; 
-  }
+.app-title {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  color: white;
+}
+
+.user-info img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.mainbox {
+  padding: 2;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+.MuiPaginationItem-root {
+  outline: none; 
+}
+
+.MuiPaginationItem-root:focus {
+  outline: none; 
+}
