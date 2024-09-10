@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <Box component="footer" sx={{ position: 'relative', overflow: 'hidden'}}>
             <Box sx={{ 
-                backgroundColor: "black", 
+                backgroundColor: "#222222", 
                 p: 2, 
                 color: 'white', 
                 display: 'flex', 

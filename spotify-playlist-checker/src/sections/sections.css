@@ -1,3 +1,11 @@
+body, html, #root{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
 .app-bar {
     background-color: #67c789 
   }
@@ -43,4 +51,35 @@
   align-items: center;
   display: flex;
   flex-direction: row;
+}
+.circles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #67c789;
+}
+
+.circle {
+  position: absolute;
+  background-color: #242424;
+  border-radius: 50%;
+  animation: float 10s infinite ease-in-out;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }

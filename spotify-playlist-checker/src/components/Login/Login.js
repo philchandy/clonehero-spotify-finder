@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from '../../sections/Footer';
 import {ReactComponent as SpotifyIcon} from '../../assets/spotify.svg'
 import InfoSection from '../../sections/InfoSection';
+import Circles from '../../sections/Circles'
 
 const Login = () => {
     const handleLogin = () => {
@@ -24,57 +25,61 @@ const Login = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ 
-                display:'flex', 
-                minHeight:'100vh', 
-                paddingLeft:'3%',
-                alignItems:'flex-start', 
-                justifyContent:'center',  
-                flexDirection:'column',
-                backgroundColor:"#67c789",
-                
-            }}>
-                <Paper  elevation={3} sx={{
-                    padding:'5%',
-                    flexDirection:'column',  
-                    width:'800px',
-                    borderRadius:'40px'
+            
+            <Circles />
+            <Box sx={{zIndex:"1", position:'relative'}}>
+                <Box sx={{ 
+                    display:'flex', 
+                    minHeight:'100vh', 
+                    paddingLeft:'3%',
+                    alignItems:'flex-start', 
+                    justifyContent:'center',  
+                    flexDirection:'column',
+                    // backgroundColor:"#67c789",
+                    
                 }}>
-                    <Typography variant="h3" sx={{
-                        
-                        textAlign:'flex-start',
-                        textWrap:'wrap',
+                    <Paper  elevation={3} sx={{
+                        padding:'5%',
+                        flexDirection:'column',  
+                        width:'800px',
+                        borderRadius:'40px'
                     }}>
-                        Check for the availability of you favorite playlists on Clone Hero.
-                    </Typography>
-                    <Typography variant="h5" sx={{
-                        marginTop:'5%',
-                        marginBottom:'5%',
-                        
-                    }}>
-                        Search. Pick. Play.
-                    </Typography>
-                    <Button variant='soft' onClick={handleLogin} sx={{
-                        border:2,
-                        borderRadius:'10px',
-                        backgroundColor:'#67c789',
-                        
-                    }}>
-                        <Box sx={{
-                            display:'flex',
-                            alignItems:'center'
+                        <Typography variant="h3" sx={{
+                            
+                            textAlign:'flex-start',
+                            textWrap:'wrap',
                         }}>
-                            <SpotifyIcon />
-                            <Typography sx={{m:'10px'}}>
-                                Login with Spotify
-                            </Typography>
-                        </Box>
-                    </Button>
-                </Paper>
-                
+                            Check for the availability of you favorite playlists on Clone Hero.
+                        </Typography>
+                        <Typography variant="h5" sx={{
+                            marginTop:'5%',
+                            marginBottom:'5%',
+                            
+                        }}>
+                            Search. Pick. Play.
+                        </Typography>
+                        <Button variant='soft' onClick={handleLogin} sx={{
+                            border:2,
+                            borderRadius:'10px',
+                            backgroundColor:'#67c789',
+                            
+                        }}>
+                            <Box sx={{
+                                display:'flex',
+                                alignItems:'center'
+                            }}>
+                                <SpotifyIcon />
+                                <Typography sx={{m:'10px'}}>
+                                    Login with Spotify
+                                </Typography>
+                            </Box>
+                        </Button>
+                    </Paper>
+                    
+                </Box>
+                <InfoSection />
+                <Footer />
             </Box>
-            <InfoSection />
-            <Footer />
         </ThemeProvider>
     );
 };

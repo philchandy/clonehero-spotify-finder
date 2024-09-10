@@ -5,6 +5,7 @@ import { Box, LinearProgress, Typography } from '@mui/material';
 import './FetchPlaylist.css'; // Import the CSS file
 import SelectPlaylistComponent from './PlaylistComponent.js';
 import CheckComponent from './CheckComponent.js';
+import Footer from '../../sections/Footer.js'
 
 const Playlist = () => {
     const [playlists, setPlaylists] = useState([]);
@@ -85,7 +86,7 @@ const Playlist = () => {
     };
 
     return (
-        <div>
+        <Box sx={{backgroundColor:'#67c789'}}>
             <AppBarComponent />
             <Box sx={{ p:2 }}>
                 {!isTracksFetched? (
@@ -119,7 +120,8 @@ const Playlist = () => {
                     />
                 )}
             </Box>
-        </div>
+            <Footer />
+        </Box>
     );
 }
 
