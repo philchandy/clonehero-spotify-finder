@@ -36,7 +36,7 @@ const AppBarComponent = () => {
     const userName = user?.display_name
 
     return (
-        <AppBar position="static" className="app-bar" sx={{ backgroundColor:"#222222" }}>
+        <AppBar position="static" className="app-bar" sx={{ backgroundColor:"#222222", zIndex:'1000' }}>
             <Toolbar className="toolbar">
                 <Typography variant="h6" className="app-title">
                     Clone Hero - Spotify Checker

@@ -6,6 +6,8 @@ import './FetchPlaylist.css'; // Import the CSS file
 import SelectPlaylistComponent from './PlaylistComponent.js';
 import CheckComponent from './CheckComponent.js';
 import Footer from '../../sections/Footer.js'
+import Circles from '../../sections/Circles'
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const Playlist = () => {
@@ -80,36 +82,37 @@ const Playlist = () => {
         }
     };
     const handleGoBack = () => {
-        setIsTracksFetched(false); // Switch to playlist selector view
+        setIsTracksFetched(false);
     };
 
     return (
-        <Box sx={{backgroundColor:'#67c789'}}>
+        <>
+        <Box sx={{
+            display:'flex',
+            height:'100%',
+            alignItems:'center',
+            justifyContent:'space-between',
+            flexDirection:'column',
+            }}>
             <AppBarComponent />
-            <Box sx={{ p:2 }}>
+            <Box sx={{ 
+                width:'100%', 
+                }}>
                 {!isTracksFetched? (
                     <>
-                    {!loading ? (
-                        <>
-                            <SelectPlaylistComponent playlists={playlists} fetchTracks={fetchTracks} />
-                        </>
-                    ): (
-                        <Box sx={{display:'flex', minHeight:'100vh'}}>
-                            <LinearProgress />
-                            <Box sx={{ 
-                                    display: "flex",
-                                    width:'100%' ,
-                                    justifyContent:'center',
-                                    alignItems:'center',
-                                    height: '100%',
-                                    marginTop:'25%'
-                                }}> 
-                                <Typography variant='h4' component='h1' color='textPrimary' sx = {{ textAlign:'center', fontWeight:'bold' }}>
+                        {!loading ? (
+                            <>
+                                <SelectPlaylistComponent playlists={playlists} fetchTracks={fetchTracks} />
+                            </>
+                        ) : (
+                            <>
+                            <Box sx={{}}>
+                                <Typography variant='subtitle1' color='white' sx = {{textAlign:'center', fontWeight:'bold'}}>
                                     Loading...
                                 </Typography>
                             </Box>
-                        </Box>
-                    )}
+                            </>
+                        )}
                     </>
                 ) : (
                     <CheckComponent 
@@ -118,8 +121,12 @@ const Playlist = () => {
                     />
                 )}
             </Box>
-            <Footer />
+            <Box sx={{width:'100%'}}>
+                <Footer />
+            </Box>
+            
         </Box>
+        </>
     );
 }
 

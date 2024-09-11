@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Height } from '@mui/icons-material';
+import { Box } from '@mui/system';
+import Footer from '../../sections/Footer';
+import { Typography } from '@mui/material';
 
 const Callback = () => {
     const navigate = useNavigate();
@@ -35,9 +39,24 @@ const Callback = () => {
     }, [navigate]);
 
     return (
-        <div>
-            <h2>Processing authentication...</h2>
-        </div>
+        <>
+            <Box sx={{
+                display:'flex',
+                height:'100%',
+                backgroundColor: "#67c789",
+                alignItems:'center',
+                justifyContent:'space-between',
+                flexDirection:'column',
+                
+            }}>
+                <Typography variant='h3' sx={{color:'white', pt:'20%'}}>Processing authentication...</Typography>
+                <Box sx={{width:'100%'}}>
+                    <Footer />
+                </Box>
+               
+            </Box>
+            
+        </>
     );
 };
 

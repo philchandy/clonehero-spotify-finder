@@ -28,7 +28,7 @@ const SelectPlaylistComponent = ({ playlists, fetchTracks }) => {
         fontWeight: 700,
       },
       h4: {
-        fontWeight: 700,
+        fontWeight: 500,
       },
       h5: {
         fontWeight: 600,
@@ -73,7 +73,7 @@ const SelectPlaylistComponent = ({ playlists, fetchTracks }) => {
         position:'relative'
         }}>
           <Box sx={{ marginY:"2%", display:'flex', alignItems:'center' }}>
-              <Typography variant="h4">Select a Playlist to check</Typography>
+              <Typography variant="h4" sx={{color:'white'}}>Select a Playlist to check.</Typography>
           </Box>
           <Box sx={{
             width:'60%'
@@ -122,6 +122,7 @@ const SelectPlaylistComponent = ({ playlists, fetchTracks }) => {
       className='fetch-button-fixed'
       disabled={!selectedPlaylist}
       sx={{
+        boxShadow:"8",
         position: isAtBottom ? 'static' : 'fixed',
         bottom: isAtBottom ? 'auto' : '8%',
         left: isAtBottom ? 'auto' : '50%',

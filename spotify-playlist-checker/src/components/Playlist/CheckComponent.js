@@ -27,8 +27,6 @@ const CheckComponent = ({ tracks, goBack }) => {
                     {tracks.length > 0 ? (
                         <List sx={{
                             py:"0",
-                            
-                            
                         }}>
                         {tracks.map((track, index) => (
                             <ListItem 
