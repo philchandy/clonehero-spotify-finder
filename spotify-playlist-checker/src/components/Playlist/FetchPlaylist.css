@@ -41,20 +41,18 @@ h3 {
   align-items: center;
   justify-content: center;
 }
-.fetch-button {
-  position: fixed;
-  bottom: 1000px;  /* 20px from the bottom of the screen */
-      /* Center horizontally */
-   /* Adjust to fully center */
-  z-index: 1000;  /* Keep it above other content */
-  padding: 10px 20px;
-  background-color: #6200ea;  /* Example background color */
+.fetch-button-fixed{
+  background-color: #6200ea; 
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 40px !important;
+  padding-left: 5% !important;
+  padding-right: 5% !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important; 
 }
 .fetch-button:hover {
-  background-color: #3700b3;  /* Darker background on hover */
+  background-color: #3700b3;  
 }

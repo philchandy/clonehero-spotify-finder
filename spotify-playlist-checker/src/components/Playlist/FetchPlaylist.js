@@ -7,13 +7,14 @@ import SelectPlaylistComponent from './PlaylistComponent.js';
 import CheckComponent from './CheckComponent.js';
 import Footer from '../../sections/Footer.js'
 
+
 const Playlist = () => {
     const [playlists, setPlaylists] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [checkedSongs, setCheckedSongs] = useState([]);
     const [isTracksFetched, setIsTracksFetched] = useState(false);
-    const [selectedPlaylist, setSelectedPlaylist] = useState(null);
+    
 
     useEffect(() => {
         const fetchPlaylists = async () => {
@@ -34,6 +35,7 @@ const Playlist = () => {
                 setError('Failed to fetch playlists. Please try again.');
             }
         };
+        
         fetchPlaylists();
     }, []);
 
@@ -80,10 +82,6 @@ const Playlist = () => {
     const handleGoBack = () => {
         setIsTracksFetched(false); // Switch to playlist selector view
     };
-    const handlePlaylistSelect = (playlist) => {
-        setSelectedPlaylist(playlist);
-        console.log('Selected Playlist:', playlist);
-    };
 
     return (
         <Box sx={{backgroundColor:'#67c789'}}>
@@ -93,10 +91,10 @@ const Playlist = () => {
                     <>
                     {!loading ? (
                         <>
-                            <SelectPlaylistComponent onPlaylistSelect={handlePlaylistSelect} playlists={playlists} fetchTracks={fetchTracks} />
+                            <SelectPlaylistComponent playlists={playlists} fetchTracks={fetchTracks} />
                         </>
                     ): (
-                        <Box>
+                        <Box sx={{display:'flex', minHeight:'100vh'}}>
                             <LinearProgress />
                             <Box sx={{ 
                                     display: "flex",
