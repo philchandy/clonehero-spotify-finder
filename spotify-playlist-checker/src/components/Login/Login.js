@@ -8,7 +8,7 @@ import Circles from '../../sections/Circles'
 
 const Login = () => {
     const handleLogin = () => {
-        window.location.href = 'http://localhost:3001/api/login';
+        window.location.href = 'http://ec2-18-216-135-187.us-east-2.compute.amazonaws.com/api/login';
     }
 
     const theme = createTheme({

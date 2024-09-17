@@ -16,7 +16,7 @@ const Callback = () => {
 
             if (authorizationCode) {
                 try {
-                    const response = await axios.get(`http://localhost:3001/api/callback?code=${authorizationCode}`);
+                    const response = await axios.get(`http://ec2-18-216-135-187.us-east-2.compute.amazonaws.com/api/callback?code=${authorizationCode}`);
                     const { access_token, refresh_token } = response.data;
 
                     // Store tokens in local storage
