@@ -71,7 +71,7 @@ const Playlist = () => {
                 }));
                 console.log("PAYLOAD: ", songs)
 
-                await axios.post('http://localhost:3001/check-songs', { songs })
+                await axios.post('http://localhost:3001/api/check-songs', { songs })
                     .then(response => {
                         setCheckedSongs(response.data);
                         console.log("CHECK RESPONSE: ",response.data)

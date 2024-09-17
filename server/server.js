@@ -3,18 +3,38 @@ const axios = require('axios');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const puppeteer = require('puppeteer')
+const path = require('path')
+
+const items = [
+    {
+        name:"test",
+        type:"test",
+    },
+    {
+        name:"test",
+        type:"test",
+    }
+];
 
 dotenv.config();
 
 const app = express();
 const port = 3001;
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3001',
+    credentials: true
+}));
 app.use(express.json());
 
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
+
+app.get('/api/items', (req,res) => {
+    console.log('hello')
+    res.send(items)
+})
 
 async function checkSongsAvailability(songs) {
     const browser = await puppeteer.launch({
@@ -77,7 +97,8 @@ async function checkSongsAvailability(songs) {
     return results;
 } 
 
-app.get('/login', (req,res) => {
+app.get('/api/login', (req,res) => {
+    console.log('Redirecting to Spotify...');
     const scopes = 'user-read-private user-read-email playlist-read-private playlist-read-collaborative'
     const spotifyAuthUrl = 'https://accounts.spotify.com/authorize';
     const queryParams = new URLSearchParams({
@@ -86,10 +107,11 @@ app.get('/login', (req,res) => {
         scope: scopes,
         redirect_uri: redirectUri
     });
+    console.log('Redirect URL:', `${spotifyAuthUrl}?${queryParams.toString()}`);
     res.redirect(`${spotifyAuthUrl}?${queryParams.toString()}`)
 });
 
-app.get('/callback', async (req, res) => {
+app.get('/api/callback', async (req, res) => {
     const authorizationCode = req.query.code;
 
     try{
@@ -106,13 +128,14 @@ app.get('/callback', async (req, res) => {
         const { access_token, refresh_token } = tokenResponse.data;
 
         res.json({ access_token, refresh_token });
+        
     } catch (error) {
         console.error('Error exchanging code for tokens:', error.response ? error.response.data : error.message);
         res.status(500).json({ error: 'Failed to exchange code for tokens' });
     }
 });
 
-app.post('/refresh_token', async (req, res) => {
+app.post('/api/refresh_token', async (req, res) => {
     const { refresh_token } = req.body;
 
     try {
@@ -136,7 +159,7 @@ app.post('/refresh_token', async (req, res) => {
     }
 });
 
-app.post('/check-songs', async (req, res) => {
+app.post('/api/check-songs', async (req, res) => {
     const { songs } = req.body;
 
     console.log('Request received: ', songs);
@@ -153,6 +176,21 @@ app.post('/check-songs', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while processing the song list' });
     }
 });
+
+const buildPath = path.join(__dirname, '../spotify-playlist-checker/build');
+
+// Serve static files from the React app
+app.use(express.static(buildPath));
+
+// Handle React routing by serving index.html for all unknown routes
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'), function(err) {
+        if (err) {
+            res.status(500).send(err);
+        }
+    });
+});
+
 
 app.listen(port, () => {
     console.log(`Spotify Auth server listening at http://localhost:${port}`)
