@@ -22,7 +22,7 @@ const app = express();
 const port = 3001;
 
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: 'http://ec2-18-216-135-187.us-east-2.compute.amazonaws.com',
     credentials: true
 }));
 app.use(express.json());
@@ -193,7 +193,7 @@ app.get('/*', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Spotify Auth server listening at http://localhost:${port}`)
+    console.log(`Spotify Auth server listening at http://ec2-18-216-135-187.us-east-2.compute.amazonaws.com:${port}`)
     
 })
 
