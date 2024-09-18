@@ -6,12 +6,13 @@ import Playlist from './components/Playlist/FetchPlaylist';
 
 const App = () => {
     return (
-        <Router basename="/">
+        <Router basename="https://ec2-18-222-149-241.us-east-2.compute.amazonaws.com">
             <Routes>
+                <Route path="/" element={<Login />} /> {/* Default route to login */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/callback" element={<Callback />} />
                 <Route path="/playlist" element={<Playlist />} />
-                <Route path="/" element={<Login />} /> {/* Default route to login */}
+                
             </Routes>
         </Router>
     );
