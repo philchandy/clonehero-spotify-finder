@@ -6,6 +6,7 @@ const puppeteer = require('puppeteer')
 const path = require('path')
 
 
+
 const items = [
     {
         name:"test",
@@ -19,18 +20,21 @@ const items = [
 
 dotenv.config();
 
+const clientId = process.env.SPOTIFY_CLIENT_ID;
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const app = express();
 const port = 3001;
 
 app.use(cors({
-    origin: 'http://ec2-18-216-135-187.us-east-2.compute.amazonaws.com',
+    origin: `${apiUrl}`,
     credentials: true
 }));
 app.use(express.json());
 
-const clientId = process.env.SPOTIFY_CLIENT_ID;
-const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
+
 
 app.get('/api/items', (req,res) => {
     console.log('hello')
@@ -43,6 +47,8 @@ async function checkSongsAvailability(songs) {
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
     });
     const page = await browser.newPage();
+    await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+    await page.setViewport({ width: 1280, height: 700 });
     const results = [];
 
     for (const song of songs) {
@@ -52,6 +58,7 @@ async function checkSongsAvailability(songs) {
         const searchUrl = `https://www.enchor.us/?instrument=guitar&difficulty=expert&name=${name}&artist=${artist}&minIntensity=0&maxIntensity=6`
 
         try{
+            
             await page.goto(searchUrl, { waitUntil: 'networkidle2' });
             await page.waitForSelector('span.text-lg', { timeout: 5000 });
 
@@ -194,7 +201,7 @@ app.get('/*', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`Spotify Auth server listening at http://ec2-18-216-135-187.us-east-2.compute.amazonaws.com:${port}`)
+    console.log(`Spotify Auth server listening at ${apiUrl}:${port}`)
     
 })
 

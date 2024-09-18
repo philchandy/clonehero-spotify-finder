@@ -5,6 +5,7 @@ import { Height } from '@mui/icons-material';
 import { Box } from '@mui/system';
 import Footer from '../../sections/Footer';
 import { Typography } from '@mui/material';
+import config from '../ApiConfig';
 
 const Callback = () => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Callback = () => {
 
             if (authorizationCode) {
                 try {
-                    const response = await axios.get(`http://ec2-18-216-135-187.us-east-2.compute.amazonaws.com/api/callback?code=${authorizationCode}`);
+                    const response = await axios.get(`${config.apiUrl}/api/callback?code=${authorizationCode}`);
                     const { access_token, refresh_token } = response.data;
 
                     // Store tokens in local storage
