@@ -7,13 +7,12 @@ import apiBaseUrl from './components/ApiConfig';
 
 const App = () => {
     return (
-        <Router basename= {`${apiBaseUrl}`}>
-            <Routes>
-                <Route path="/" element={<Login />} /> {/* Default route to login */}
+        <Router>
+            <Routes>   
                 <Route path="/login" element={<Login />} />
                 <Route path="/callback" element={<Callback />} />
                 <Route path="/playlist" element={<Playlist />} />
-                
+                <Route path="/" element={<Login />} /> {/* Default route to login */}
             </Routes>
         </Router>
     );
