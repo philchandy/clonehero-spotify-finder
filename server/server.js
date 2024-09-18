@@ -5,19 +5,6 @@ const dotenv = require('dotenv');
 const puppeteer = require('puppeteer')
 const path = require('path')
 
-
-
-const items = [
-    {
-        name:"test",
-        type:"test",
-    },
-    {
-        name:"test",
-        type:"test",
-    }
-];
-
 dotenv.config();
 
 const clientId = process.env.SPOTIFY_CLIENT_ID;
@@ -34,12 +21,10 @@ app.use(cors({
 }));
 app.use(express.json());
 
+const buildPath = path.join(__dirname, '../spotify-playlist-checker/build');
 
-
-app.get('/api/items', (req,res) => {
-    console.log('hello')
-    res.send(items)
-})
+// Serve static files from the React app
+app.use(express.static(buildPath));
 
 async function checkSongsAvailability(songs) {
     const browser = await puppeteer.launch({
@@ -184,11 +169,6 @@ app.post('/api/check-songs', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while processing the song list' });
     }
 });
-
-const buildPath = path.join(__dirname, '../spotify-playlist-checker/build');
-
-// Serve static files from the React app
-app.use(express.static(buildPath));
 
 // Handle React routing by serving index.html for all unknown routes
 app.get('/*', (req, res) => {
