@@ -2,7 +2,7 @@
   "name": "spotify-playlist-checker",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://ec2-18-222-149-241.us-east-2.compute.amazonaws.com",
+  "homepage": ".",
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",

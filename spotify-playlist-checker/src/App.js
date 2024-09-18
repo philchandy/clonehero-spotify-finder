@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Callback from './components/Callback/Callback';
 import Playlist from './components/Playlist/FetchPlaylist';
+import apiBaseUrl from './components/ApiConfig';
 
 const App = () => {
     return (
-        <Router basename="https://ec2-18-222-149-241.us-east-2.compute.amazonaws.com">
+        <Router basename= {`${apiBaseUrl}`}>
             <Routes>
                 <Route path="/" element={<Login />} /> {/* Default route to login */}
                 <Route path="/login" element={<Login />} />
