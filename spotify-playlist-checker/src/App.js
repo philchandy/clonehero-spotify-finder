@@ -6,7 +6,7 @@ import Playlist from './components/Playlist/FetchPlaylist';
 
 const App = () => {
     return (
-        <Router>
+        <Router basename="/">
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/callback" element={<Callback />} />
