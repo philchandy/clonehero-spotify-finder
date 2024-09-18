@@ -8,7 +8,7 @@ import CheckComponent from './CheckComponent.js';
 import Footer from '../../sections/Footer.js'
 import Circles from '../../sections/Circles'
 import CircularProgress from '@mui/material/CircularProgress';
-import config from '../ApiConfig'
+import apiBaseUrl from '../ApiConfig'
 
 
 const Playlist = () => {
@@ -72,7 +72,7 @@ const Playlist = () => {
                 }));
                 console.log("PAYLOAD: ", songs)
 
-                await axios.post(`${config.apiUrl}/api/check-songs`, { songs })
+                await axios.post(`${apiBaseUrl}/api/check-songs`, { songs })
                     .then(response => {
                         setCheckedSongs(response.data);
                         console.log("CHECK RESPONSE: ",response.data)

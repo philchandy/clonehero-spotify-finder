@@ -5,11 +5,11 @@ import Footer from '../../sections/Footer';
 import {ReactComponent as SpotifyIcon} from '../../assets/spotify.svg'
 import InfoSection from '../../sections/InfoSection';
 import Circles from '../../sections/Circles'
-import config from '../ApiConfig'
+import apiBaseUrl from '../ApiConfig';
 
 const Login = () => {
     const handleLogin = () => {
-        window.location.href = `${config.apiUrl}/api/login`;
+        window.location.href = `${apiBaseUrl}/api/login`;
     }
 
     const theme = createTheme({

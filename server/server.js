@@ -48,7 +48,7 @@ async function checkSongsAvailability(songs) {
     });
     const page = await browser.newPage();
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
-    await page.setViewport({ width: 1280, height: 700 });
+    await page.setViewport({ width: 1280, height: 800 });
     const results = [];
 
     for (const song of songs) {

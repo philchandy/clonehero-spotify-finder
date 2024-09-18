@@ -6,9 +6,12 @@ import { Box } from '@mui/system';
 import Footer from '../../sections/Footer';
 import { Typography } from '@mui/material';
 import config from '../ApiConfig';
+import apiBaseUrl from '../ApiConfig';
 
 const Callback = () => {
     const navigate = useNavigate();
+
+     
 
     useEffect(() => {
         const exchangeCodeForTokens = async () => {
@@ -17,7 +20,7 @@ const Callback = () => {
 
             if (authorizationCode) {
                 try {
-                    const response = await axios.get(`${config.apiUrl}/api/callback?code=${authorizationCode}`);
+                    const response = await axios.get(`${apiBaseUrl}/api/callback?code=${authorizationCode}`);
                     const { access_token, refresh_token } = response.data;
 
                     // Store tokens in local storage
