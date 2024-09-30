@@ -73,18 +73,26 @@ const SelectPlaylistComponent = ({ playlists, fetchTracks }) => {
         position:'relative'
         }}>
           <Box sx={{ marginY:"2%", display:'flex', alignItems:'center' }}>
-              <Typography variant="h4" sx={{color:'white'}}>Select a Playlist to check.</Typography>
+              <Typography variant="h4" sx={{color:'white', textAlign:'center', font: 'caption', fontSize:{md:'x-large'}}}>Select a Playlist to check.</Typography>
           </Box>
           <Box sx={{
-            width:'60%'
+            width:{xs:'90%', sm:'90%', md:'65%', lg:'50%'}
           }}>
             <Paper sx={{
-              px:'5%',
+              px:{ xs: '4%', sm: '5%' },
               mb:'4%',
               borderRadius:'20px'
             }}>
-              <Box sx={{pt:'3%', pb:'1%'}}>
-                <Typography variant='h6'>From Your Spotify Account</Typography>
+              <Box sx={{ py:'1%'}}>
+                <Typography 
+                variant='h6'
+                sx={{
+                  fontSize: { xs: '14px', sm: '18px' },
+                  textAlign: 'center',
+                }}
+                >
+                  From Your Spotify Account: 
+                </Typography>
               </Box>
               <Divider />
               <RadioGroup
@@ -98,17 +106,32 @@ const SelectPlaylistComponent = ({ playlists, fetchTracks }) => {
                     display="flex"
                     alignItems="center"
                     mb={2}
+                    sx={{
+                      flexWrap:'wrap',
+                      justifyContent:'space-between',
+                      width:'100%'
+                    }}
                   >
                     <FormControlLabel
                       value={playlist.id}
                       control={<Radio />}
+                      sx={{
+                        width: '10%', 
+                        minWidth: '40px', 
+                      }}
                     />
                     <Avatar
                       src={playlist.images && playlist.images.length > 0 ? playlist.images[0]?.url : 'default-image-url'}
                       alt={playlist.name}
-                      sx={{ width: 56, height: 56, mr: 2 }}
+                      sx={{ width: 56, height: 56, mr: 2, minWidth: '48px' }}
                     />
-                    <Typography>{playlist.name}</Typography>
+                    <Typography sx={{
+                      flex: 1,
+                      fontSize: { xs: '12px', sm: '16px' },
+                      wordBreak: 'break-word',
+                    }}>
+                      {playlist.name}
+                    </Typography>
                     
                   </Box>
                 ))}

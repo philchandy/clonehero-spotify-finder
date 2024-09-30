@@ -94,6 +94,8 @@ const Playlist = () => {
             alignItems:'center',
             justifyContent:'space-between',
             flexDirection:'column',
+            width: '100%',
+            
             }}>
             <AppBarComponent />
             <Box sx={{ 

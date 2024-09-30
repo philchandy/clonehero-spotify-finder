@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Callback from './components/Callback/Callback';
 import Playlist from './components/Playlist/FetchPlaylist';
-import apiBaseUrl from './components/ApiConfig';
 
 const App = () => {
     return (

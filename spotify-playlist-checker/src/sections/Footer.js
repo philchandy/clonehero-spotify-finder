@@ -25,7 +25,7 @@ const Footer = () => {
                     justifyContent:'space-between'
                 }}> 
                     <Box>
-                        <Link href="https://www.privacypolicies.com/generic/" target="_blank" underline="hover" color="inherit" sx={{ mr: 2 }}>Privacy</Link>
+                        <Link href="https://www.phillipchandy.app" target="_blank" underline="hover" color="inherit" sx={{ mr: 2 }}>Privacy</Link>
                         <Link href="#" target="_blank" underline="hover" color="inherit">Contact Me</Link>
                     </Box>
                     <Box>

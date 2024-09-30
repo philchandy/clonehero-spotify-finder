@@ -6,6 +6,7 @@ import {ReactComponent as SpotifyIcon} from '../../assets/spotify.svg'
 import InfoSection from '../../sections/InfoSection';
 import Circles from '../../sections/Circles'
 import apiBaseUrl from '../ApiConfig';
+import Logo from '../../assets/logoBlack.png'
 
 const Login = () => {
     const handleLogin = () => {
@@ -26,57 +27,117 @@ const Login = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            
             <Circles />
-            <Box sx={{zIndex:"1", position:'relative'}}>
-                <Box sx={{ 
-                    display:'flex', 
-                    minHeight:'100vh', 
-                    paddingLeft:'3%',
-                    alignItems:'flex-start', 
-                    justifyContent:'center',  
-                    flexDirection:'column',
-                    // backgroundColor:"#67c789",
-                    
+            <Box sx={{ zIndex: "1", position: 'relative' }}>
+                <Box sx={{
+                    display: 'flex',
+                    minHeight: '100vh',
+                    paddingLeft: { md: '3%', sm: '0%' },
+                    alignItems: { md: 'flex-start', sm: 'center' },
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    width: '100%',
                 }}>
-                    <Paper  elevation={3} sx={{
-                        padding:'5%',
-                        flexDirection:'column',  
-                        width:'800px',
-                        borderRadius:'40px'
-                    }}>
-                        <Typography variant="h3" sx={{
-                            
-                            textAlign:'flex-start',
-                            textWrap:'wrap',
-                        }}>
-                            Check for the availability of you favorite playlists on Clone Hero.
-                        </Typography>
-                        <Typography variant="h5" sx={{
-                            marginTop:'5%',
-                            marginBottom:'5%',
-                            
-                        }}>
-                            Search. Pick. Play.
-                        </Typography>
-                        <Button variant='soft' onClick={handleLogin} sx={{
-                            border:2,
-                            borderRadius:'10px',
-                            backgroundColor:'#67c789',
-                            
-                        }}>
-                            <Box sx={{
-                                display:'flex',
-                                alignItems:'center'
-                            }}>
-                                <SpotifyIcon />
-                                <Typography sx={{m:'10px'}}>
-                                    Login with Spotify
-                                </Typography>
+                    {/* Show Paper on medium and larger devices */}
+                    <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
+                        <Paper
+                            elevation={4}
+                            sx={{
+                                padding: '5%',
+                                flexDirection: 'column',
+                                width: { xs: '90%', sm: '100%', md: '700px' },
+                                borderRadius: '30px',
+                                backgroundColor: '#f0f0f0',
+                                textAlign: 'start',  // Center content inside Paper
+                            }}
+                        >
+                            {/* Logo Section */}
+                            <Box sx={{ display: 'flex', justifyContent: 'start', marginBottom: '2rem' }}>
+                                <img
+                                    src={Logo}
+                                    alt="Clone Hero Sync Logo"
+                                    style={{ width: '60%', maxWidth: '400px', borderRadius: '10px' }}
+                                />
                             </Box>
+
+                            {/* Text Content */}
+                            <Typography
+                                variant="h4"
+                                sx={{
+                                    fontWeight: 600,
+                                    marginBottom: '1.5rem',
+                                    fontFamily: 'Poppins, sans-serif',
+                                    color: '#333',
+                                }}
+                            >
+                                Check Your Favorite Playlists on Clone Hero
+                            </Typography>
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    marginBottom: '2.5rem',
+                                    color: '#666',
+                                    fontFamily: 'Poppins, sans-serif',
+                                    lineHeight: 1.6,
+                                }}
+                            >
+                                Explore your Spotify playlists and check for compatability with Clone Hero effortlessly. Search, select, and enjoy your favorite tracks in the game.
+                            </Typography>
+
+                            {/* Spotify Button */}
+                            <Button
+                                onClick={handleLogin}
+                                sx={{
+                                    border: "2px solid #3e3e3e",
+                                    borderColor:'d3d3d3',
+                                    borderRadius: '10px',
+                                    backgroundColor: '#67c789',
+                                    padding: '10px 20px',
+                                    '&:hover': {
+                                        backgroundColor: '#d3d3d3',
+                                    },
+                                }}
+                            >
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <SpotifyIcon />
+                                    <Typography sx={{ marginLeft: '10px', color: '#fff', fontWeight: 500 }}>
+                                        Login with Spotify
+                                    </Typography>
+                                </Box>
+                            </Button>
+                        </Paper>
+                    </Box>
+
+                    {/* Display text directly on smaller devices */}
+                    <Box sx={{ display: { xs: 'block', sm: 'block', md: 'none' }, textAlign: 'center'}}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <img
+                                src={Logo}
+                                alt="Clone Hero Sync Logo"
+                                style={{ width: '100%', borderRadius: '10px' }}
+                            />
+                        </Box>
+                        <Typography variant="h6" sx={{
+                            
+                            marginBottom: '5%',
+                            color:'whitesmoke' 
+                        }}>
+                            Check for the availability of your <br></br> favorite playlists on Clone Hero.
+                        </Typography>
+                        
+                        <Button variant='soft' onClick={handleLogin} sx={{
+                            border: 2,
+                            borderRadius: '10px',
+                            backgroundColor: '#67c789',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                        }}>
+                            <SpotifyIcon />
+                            <Typography sx={{ m: '10px' }}>
+                                Login with Spotify
+                            </Typography>
                         </Button>
-                    </Paper>
-                    
+                    </Box>
                 </Box>
                 <InfoSection />
                 <Footer />

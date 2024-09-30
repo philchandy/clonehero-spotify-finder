@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import axios from 'axios';
 import Box from '@mui/material/Box';
+import logoWhite from '../assets/logoWhite.png'
 
 import './sections.css'; // Import the CSS file
 
@@ -38,9 +39,13 @@ const AppBarComponent = () => {
     return (
         <AppBar position="static" className="app-bar" sx={{ backgroundColor:"#222222", zIndex:'1000' }}>
             <Toolbar className="toolbar">
-                <Typography variant="h6" className="app-title">
-                    Clone Hero - Spotify Checker
-                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'start'}}>
+                    <img
+                        src={logoWhite}
+                        alt="Clone Hero Sync Logo"
+                        style={{ width: '60%' }}
+                    />
+                </Box>
 
                 {/* User info on the right side, only visible when isMobile is false */}
                 <Box className="user-info" sx={{  }}>

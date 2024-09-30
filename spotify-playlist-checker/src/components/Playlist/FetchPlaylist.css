@@ -1,5 +1,5 @@
 #root{
-  background-color:#67c789;
+  background: linear-gradient(to bottom,#67c789, #222222 );
 }
 select {
     padding: 8px;

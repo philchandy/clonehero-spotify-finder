@@ -17,7 +17,7 @@ const CheckComponent = ({ tracks, goBack }) => {
                 justifyContent:'center',
                 alignItems:'center'
             }}>
-                <Typography variant="h4">Song Availability</Typography>
+                <Typography variant="h6" sx={{color:'white', font:'semibold', py:'2%'}} >Song Availability</Typography>
                 <Paper sx={{
                     mt:'1%',
                     py:'0',

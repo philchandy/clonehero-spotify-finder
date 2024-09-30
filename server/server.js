@@ -13,7 +13,7 @@ const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
 app.use(cors({
     origin: `${apiUrl}`,
@@ -21,9 +21,8 @@ app.use(cors({
 }));
 app.use(express.json());
 
+//serve static files 
 const buildPath = path.join(__dirname, '../spotify-playlist-checker/build');
-
-// Serve static files from the React app
 app.use(express.static(buildPath));
 
 async function checkSongsAvailability(songs) {
