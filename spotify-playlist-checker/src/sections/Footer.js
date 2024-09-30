@@ -25,14 +25,14 @@ const Footer = () => {
                     justifyContent:'space-between'
                 }}> 
                     <Box>
-                        <Link href="https://www.phillipchandy.app" target="_blank" underline="hover" color="inherit" sx={{ mr: 2 }}>Privacy</Link>
-                        <Link href="#" target="_blank" underline="hover" color="inherit">Contact Me</Link>
+                        <Link href="https://www.privacypolicies.com/generic/" target="_blank" underline="hover" color="inherit" sx={{ mr: 2 }}>Privacy</Link>
+                        <Link href="https://www.phillipchandy.app" target="_blank" underline="hover" color="inherit">Contact Me</Link>
                     </Box>
                     <Box>
                         <IconButton href="https://github.com/philchandy/clonehero-spotify-finder" target="_blank" color="inherit">
                             <GitHubIcon width="40" height="40" />
                         </IconButton>
-                        <IconButton href="#" target="_blank" color="inherit">
+                        <IconButton href="https://www.phillipchandy.app" target="_blank" color="inherit">
                             <PublicIcon width="40" height="40" />
                         </IconButton>
                     </Box>
